@@ -1,0 +1,35 @@
+tap "homebrew/bundle"
+
+git
+neovim
+nmap
+qemu
+shellcheck
+vim
+wireshark
+
+cask "adobe-creative-cloud"
+cask "arc"
+cask "battle-net"
+cask "brave-browser"
+cask "discord"
+cask "epic-games"
+cask "expressvpn"
+cask "firefox"
+cask "gog-galaxy"
+cask "google-chrome"
+cask "grammarly"
+cask "heroic"
+cask "logi-options-plus"
+cask "monitorcontrol"
+cask "moonlight"
+cask "nordvpn"
+cask "parallels"
+cask "parsec"
+cask "protonmail-bridge"
+cask "protonvpn"
+cask "slack"
+cask "steam"
+cask "utm"
+cask "visual-studio-code"
+cask "vmware-fusion"

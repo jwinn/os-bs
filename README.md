@@ -7,11 +7,19 @@ Feel free to use, fork, borrow, etc.
 
 ### Install
 
-- [ ] install [Homebrew], if not already installed
-- [ ] install [Homebrew] formulae, based on `Brewfile`
-- [ ] install [chezmoi], if not already installed
-- [ ] use [chezmoi] to setup [dotfiles]
-- [ ] ?? configure macOS settings
+1. [x] install [Homebrew], if not already installed
+1. [ ] install [Homebrew] formulae, based on `Brewfile`
+1. [x] install [chezmoi], if not already installed
+1. [ ] use [chezmoi] to add [dotfiles]
+1. [ ] ?? configure macOS settings
+
+### ?? Uninstall
+
+1. [ ] ?? restore macOS settings
+1. [ ] use [chezmoi] to cleanup [dotfiles]
+1. [ ] uninstall [chezmoi], if installed
+1. [ ] uninstall [Homebrew] formulae, based on `Brewfile`
+1. [ ] uninstall [Homebrew], if installed
 
 ## Windows 10/11
 
@@ -19,15 +27,33 @@ Feel free to use, fork, borrow, etc.
 
 TBD [Scoop] or [WinGet]
 
-- [ ] ?? update [WinGet] from Microsoft Store [App Installer]
-- [ ] ?? update [WinGet] sources
-- [ ] ?? install specific packages
-- [ ] ?? add [dotfiles]
-- [ ] ?? configure Windows settings
+1. [ ] ?? update [WinGet] from Microsoft Store [App Installer]
+1. [ ] ?? update [WinGet] sources
+1. [ ] ?? install specific packages
+1. [ ] ?? add [dotfiles]
+1. [ ] ?? configure Windows settings
+
+### ?? Uninstall
+
+1. [ ] ?? restore Windows settings
+1. [ ] ?? uninstall specific packages
+1. [ ] ?? remove [dotfiles]
 
 ## Linux
 
-TBD as probably prefer to use [NixOS]
+TBD as probably prefer to use [NixOS] and a separate init process
+
+### ?? Install
+
+1. [ ] ?? install VM software to setup NixOS
+1. [ ] ?? add [dotfiles]
+1. [ ] ?? configure settings
+
+### ?? Uninstall
+
+1. [ ] ?? restore settings
+1. [ ] ?? remove [dotfiles]
+1. [ ] ?? uninstall VM software to setup NixOS
 
 [App Installer]: https://www.microsoft.com/p/app-installer/9nblggh4nns1
 [chezmoi]: https://www.chezmoi.io
