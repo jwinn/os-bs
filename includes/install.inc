@@ -86,7 +86,7 @@ install_macos() {
   if ! has_command brew \
     && print_prompt "Would you like to install Homebrew" "y"; then
 
-    install_homebrew
+    install_homebrew "${WORK_INCLUDES_DIR}/Brewfile"
   fi
 
   if ! has_command chezmoi \

@@ -4,7 +4,6 @@
 check_if_sourced
 
 BREW_PREFIX="${BREW_PREFIX-}"
-BREW_FORMULAE="${BREW_FORMULAE:-"atuin bottom emacs elvish"}"
 BREW_URL="https://raw.githubusercontent.com/Homebrew/install/HEAD"
 
 # Usage: get_homebrew_prefix
@@ -63,6 +62,7 @@ prepend_homebrew_to_path() {
 #         1, if required commands missing, or an error occurs
 # Note: use of `local` is not, technically, POSIX compliant
 install_homebrew() (
+  local _brewfile="${1}"
   local _prefix="$(get_homebrew_prefix)"
 
   # check if Homebrew already installed
@@ -103,15 +103,15 @@ install_homebrew() (
     brew update
     brew upgrade
 
-    for _formula in $BREW_FORMULAE; do
-      print_info "Installing ${_formula} formula"
-
-      if brew install $_formula; then
-        print_success "${_formula} formula installed"
+    if [ -n "${_brewfile}" ]; then
+      if [ -r "${_brewfile}" ]; then
+        # use Brewfile to install formulae
+        print_info "using Brewfile: ${_brewfile}"
+        brew bundle install --file="${_brewfile}"
       else
-        print_error "${_formula} formula not installed"
+        print_warn "Brewfile specified, but not found: ${_brewfile}"
       fi
-    done
+    fi
 
     print_info "Cleaning up Homebrew"
     brew cleanup -s
