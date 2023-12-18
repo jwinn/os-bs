@@ -3,8 +3,8 @@
 # TODO: will just error if base.inc was not sourced before
 check_if_sourced
 
-DOTFILES_DIR="${DOTFILES_DIR:-"${HOME}/projects/codeberg/jwinn/dotfiles"}"
-DOTFILES_URI="${DOTFILES_URI:-"https://codeberg.org/jwinn/dotfiles"}"
+DOTFILES_DIR="${DOTFILES_DIR:-"${HOME}/projects/github/jwinn/dotfiles"}"
+DOTFILES_URI="${DOTFILES_URI:-"https://github.com/jwinn/dotfiles"}"
 
 # Usage: install_dotfiles
 # Description: attempts to retrieve dotfiles from source repo and install
@@ -29,6 +29,6 @@ install_dotfiles() {
     print_success "dotfiles retreived, via git, at: ${DOTFILES_DIR}"
 
     print_info "Installing dotfiles for user: ${USER}"
-    "${DOTFILES_DIR}"/bin/install
+    sh "${DOTFILES_DIR}/install.sh"
   fi
 }

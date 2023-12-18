@@ -1,9 +1,9 @@
 #!/bin/sh
 
-set -e
-set -u
+set -eu
 
-CWD=$(CDPATH= cd -- "$(dirname -- "${0}")" && pwd -P)
+# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
+CWD="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 SCRIPT_NAME="$(basename -- "${0}")"
 
 ######################################################################
@@ -77,19 +77,21 @@ print_prompt() {
     return 0
   fi
 
+  local _msg="${1}"
+  local _default=${2-}
   local _yes="y"
   local _no="N"
   local _rc=0
   local _answer=
 
-  if [ "${2}" != "${2#[Yy]}" ]; then
+  if [ "${_default}" != "${_default#[Yy]}" ]; then
     _yes="Y"
     _no="n"
   fi
 
   printf "%s %s? [%s/%s] " \
     "${MAGENTA}[?]${NO_COLOR}" \
-    "${1}" \
+    "${_msg}" \
     "${BOLD}${_yes}${NO_COLOR}" \
     "${BOLD}${_no}${NO_COLOR}"
 
