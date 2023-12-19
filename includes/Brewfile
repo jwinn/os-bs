@@ -1,12 +1,16 @@
+# 'brew tap'
 tap "homebrew/bundle"
 
-git
-neovim
-nmap
-qemu
-shellcheck
-vim
-wireshark
+brew "git"
+# install only on specified OS
+brew "gnupg" if OS.mac?
+brew "glibc" if OS.linux?
+brew "neovim"
+brew "nmap"
+brew "qemu"
+brew "shellcheck"
+brew "vim"
+brew "wireshark"
 
 cask "adobe-creative-cloud"
 cask "arc"
@@ -20,6 +24,8 @@ cask "gog-galaxy"
 cask "google-chrome"
 cask "grammarly"
 cask "heroic"
+# 'brew install --cask' only if '/usr/libexec/java_home --failfast' fails
+cask "java" unless system "/usr/libexec/java_home --failfast"
 cask "logi-options-plus"
 cask "monitorcontrol"
 cask "moonlight"

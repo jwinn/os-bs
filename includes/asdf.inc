@@ -11,7 +11,7 @@ else
   ASDF_DIR="${ASDF_DIR:-"${HOME}/.asdf"}"
 fi
 
-ASDF_PLUGINS="${ASDF_PLUGINS:-"bat lsd shellcheck"}"
+ASDF_PLUGINS="${ASDF_PLUGINS:-""}"
 
 # provide env vars to subsequent (child) commands
 export ASDF_DIR="${ASDF_DIR}"

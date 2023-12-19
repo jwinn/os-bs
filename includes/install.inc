@@ -67,6 +67,7 @@ check_if_sourced
 # Usage: install_macos
 install_macos() {
   # source req files
+  safe_source "${WORK_INCLUDES_DIR}/asdf.inc"
   safe_source "${WORK_INCLUDES_DIR}/homebrew.inc"
   safe_source "${WORK_INCLUDES_DIR}/chezmoi.inc"
   safe_source "${WORK_INCLUDES_DIR}/dotfiles.inc"

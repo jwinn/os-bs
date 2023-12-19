@@ -152,28 +152,31 @@ remove_from_path () {
 # Description: to prepend ~/bin to $PATH `prepend_to_path ~/bin ${PATH}`
 # Note: use of `local` is not, technically, POSIX compliant
 prepend_to_path () {
-  # if the path is already in the variable,
-  # remove it so we can move it to the front
-  remove_from_path "${1}" "${2}"
-
-  #[ -d "${1}" ] || return
+  local _dir="${1}"
   local _var="${2:-PATH}"
   local _value=$(indirect_expand "${_var}")
 
-  export "${_var}=${1}${_value:+:${_value}}"
+  # if the path is already in the variable,
+  # remove it so we can move it to the front
+  remove_from_path "${_dir}" "${_var}"
+
+  #[ -d "${_dir}" ] || return
+
+  export "${_var}=${_dir}${_value:+:${_value}}"
 }
 
 # Usage: append_to_path /path/to/bin [PATH]
 # Description: to append ~/bin to $PATH `append_to_path ~/bin ${PATH}`
 # Note: use of `local` is not, technically, POSIX compliant
 append_to_path () {
-  remove_from_path "${1}" "${2}"
-  #[ -d "${1}" ] || return
-
-  local _var=${2:-PATH}
+  local _dir="${1}"
+  local _var="${2:-PATH}"
   local _value=$(indirect_expand "${_var}")
 
-  export "${_var}=${_value:+${_value}:}${1}"
+  remove_from_path "${_dir}" "${_var}"
+  #[ -d "${_dir}" ] || return
+
+  export "${_var}=${_value:+${_value}:}${_dir}"
 }
 
 # Usage: get_os_name

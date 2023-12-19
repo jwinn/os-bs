@@ -18,6 +18,7 @@ check_if_sourced
 # Usage: uninstall_macos
 uninstall_macos() {
   # source req files
+  safe_source "${WORK_INCLUDES_DIR}/asdf.inc"
   safe_source "${WORK_INCLUDES_DIR}/homebrew.inc"
   safe_source "${WORK_INCLUDES_DIR}/chezmoi.inc"
   safe_source "${WORK_INCLUDES_DIR}/dotfiles.inc"
@@ -43,4 +44,11 @@ uninstall_macos() {
 
     uninstall_homebrew
   fi
+
+  # TBD: remove XDG folders?
+#  if [ -d "${XDG_CONFIG_HOME}" ] \
+#    && print_prompt "Would you like to remove XDG directories" "y"; then
+#
+#    remove_xdg_base_dirs
+#  fi
 }
