@@ -4,17 +4,22 @@
 $principal = [Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent();
 $adminRole = [Security.Principal.WindowsBuiltInRole]::Administrator;
 
-$appStoreUpdate = "Get-CimInstance -Namespace root/CIMV2/mdm/dmmap -ClassName MDM_EnterpriseModernAppManagement_AppManagement01 | Invoke-CimMethod -MethodName UpdateScanMethod"
+$appStoreUpdate = {
+    Get-CimInstance -Namespace root/CIMV2/mdm/dmmap `
+    -ClassName MDM_EnterpriseModernAppManagement_AppManagement01 `
+    | Invoke-CimMethod -MethodName UpdateScanMethod
+}
 
 # clear the screen
 Clear-Host
 
-# update the Microsoft Store Apps
+# update the Microsoft Store Apps, elevate in new window, if necessary
 if ($principal.IsInRole($adminRole)) {
-    Start-Process PowerShell -Verb RunAs $appStoreUpdate
+    & $appStoreUpdate
 } else {
-    Start-Process PowerShell $appStoreUpdate
+    Start-Process powershell -Verb RunAs -ArgumentList $appStoreUpdate
 }
+
 # TBD: the above command schedules the updates and returns,
 #      but doesn't wait for updates to complete
 # Note: it may be ideal for the winget commands to run as the current user
@@ -22,7 +27,7 @@ if ($principal.IsInRole($adminRole)) {
 # ensure the App Installer is installed, via the Microsoft Store
 # for now, wait for user to continue after verifying store is updated
 Write-Host "Please verify the Microsoft Store has updated, before continuing"
-Read-Host -Prompt "Press any key to continue..."
+$res = Read-Host "Press any key to continue..."
 
 # update winget sources
 winget source update
